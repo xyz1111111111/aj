@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="studentApp">
+
+<head>
+    <title>AngularJS Student Details</title>
+    <style>
+        #studentDetails {
+            width: 400px;
+            margin: auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body>
+    <div ng-controller="studentCtrl" id="studentDetails">
+        <h2>Student Details</h2>
+        <label for="studentName">Name:</label>
+        <input type="text" id="studentName" ng-model="student.name" required>
+        <label for="studentBranch">Branch:</label>
+        <input type="text" id="studentBranch" ng-model="student.branch" required>
+        <p>Uppercase Name: {{ student.name | uppercase }}</p>
+        <p>Uppercase Branch: {{ student.branch | uppercase }}</p>
+    </div>
+    <script>
+        var app = angular.module('studentApp', []);
+        app.controller('studentCtrl', function ($scope) {
+            $scope.student = {
+                name: 'John Doe',
+                branch: 'Computer Science'
+            };
+        }); 
+    </script>
+</body>
+
+</html>

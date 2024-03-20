@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="calculatorApp">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        .container {
+            margin: 110px;
+            padding: 20px;
+            border: 20px;
+        }
+
+        .operator-button {
+            padding: 5px 10px;
+            border: 3px solid green;
+            background-color: skyblue;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" ng-controller="calculatorController">
+        <h2>Simple Calculator</h2>
+        <input type="number" ng-model="num1" placeholder="Enter number 1">
+        <input type="number" ng-model="num2" placeholder="Enter number 2">
+        <select class="operator-button" ng-model="operator">
+            <option value="+">Addition</option>
+            <option value="-">Subtraction</option>
+            <option value="*">Multiplication</option>
+            <option value="/">Division</option>
+        </select>
+        <button class="operator-button" ng-click="calculate()">Calculate</button>
+        <span class="result">Result: {{ result }}</span>
+    </div>
+
+    <script>
+        var app = angular.module('calculatorApp', []);
+        app.controller('calculatorController', function ($scope) {
+            $scope.num1 = 0;
+            $scope.num2 = 0;
+            $scope.operator = '+';
+            $scope.result = 0;
+
+            $scope.calculate = function () {
+                if ($scope.operator === '+') {
+                    $scope.result = $scope.num1 + $scope.num2;
+                } else if ($scope.operator === '-') {
+                    $scope.result = $scope.num1 - $scope.num2;
+                } else if ($scope.operator === '*') {
+                    $scope.result = $scope.num1 * $scope.num2;
+                } else if ($scope.operator === '/') {
+                    if ($scope.num2 === 0) {
+                        $scope.result = 'Cannot divide by zero';
+                    } else {
+                        $scope.result = $scope.num1 / $scope.num2;
+                    }
+                }
+            };
+        });
+    </script>
+</body>
+
+</html>
